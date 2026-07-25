@@ -4,7 +4,7 @@ class SocketConfig {
   static getOptions() {
     return {
       cors: {
-        origin: EnvConfig.getCorsOrigins(),
+        origin: "https://coderoomcollab.vercel.app",
         credentials: true,
       },
     };
