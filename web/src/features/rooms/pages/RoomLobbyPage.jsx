@@ -18,6 +18,7 @@ import AuthService from "../../auth/services/auth.service.js";
 import { clearUser, setUser } from "../../auth/authSlice.js";
 import RoomService from "../services/room.service.js";
 import { setCurrentRoom, setRoomHistory, setLoading, setError } from "../roomsSlice.js";
+import logo from "../../../shared/assets/images/logo.png";
 
 function formatDate(value) {
   if (!value) return "Just now";
@@ -333,10 +334,7 @@ export function RoomLobbyPage() {
         {/* --- NAVBAR --- */}
         <nav className="flex items-center justify-between px-8 py-6 max-w-7xl mx-auto w-full">
           <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate("/")}>
-            <div className="w-8 h-8 bg-white rounded-md flex items-center justify-center">
-              <span className="text-black font-bold text-xl">&lt;/&gt;</span>
-            </div>
-            <span className="text-xl font-semibold tracking-tight">Darkweb X</span>
+            <img src={logo} alt="CodeRoom" className="h-9 w-auto" />
           </div>
           <button onClick={loadHistory} className="flex items-center gap-2 text-zinc-400 hover:text-white text-sm transition-all">
             <RefreshCw size={14} className={rooms.loading ? "animate-spin" : ""} />

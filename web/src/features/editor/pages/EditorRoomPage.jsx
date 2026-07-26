@@ -50,22 +50,16 @@ function lineFromOffset(content = "", offset = 0) {
   return content.slice(0, Math.max(0, offset)).split("\n").length;
 }
 
-function hashColorIndex(value = "") {
-  let hash = 0;
-
-  for (let index = 0; index < value.length; index += 1) {
-    hash = (hash * 31 + value.charCodeAt(index)) % USER_COLOR_CLASSES.length;
-  }
-
-  return hash;
-}
-
 function actorName(actor = {}) {
   return actor.isSelf ? "You" : actor.name || "Someone";
 }
 
 function actorPresenceKey(actor = {}) {
   return String(actor.id || actor._id || actor.name || "remote");
+}
+
+function actorColorKey(actor = {}) {
+  return String(actor.id || actor._id || actor.email || actor.name || "remote");
 }
 
 function participantInitials(name = "") {
@@ -220,6 +214,23 @@ export function EditorRoomPage() {
   const participantActivityRef = useRef(new Map());
   const participantsRef = useRef([]);
   const conflictMarkersRef = useRef(new Map());
+  const actorColorIndexesRef = useRef(new Map());
+  const nextActorColorIndexRef = useRef(0);
+
+  const getActorColorIndex = useCallback(
+    (actor = {}) => {
+      const key = actor.isSelf && currentUserId ? currentUserId : actorColorKey(actor);
+      const colorIndexes = actorColorIndexesRef.current;
+
+      if (!colorIndexes.has(key)) {
+        colorIndexes.set(key, nextActorColorIndexRef.current % USER_COLOR_CLASSES.length);
+        nextActorColorIndexRef.current += 1;
+      }
+
+      return colorIndexes.get(key);
+    },
+    [currentUserId],
+  );
 
   const decorateParticipants = useCallback((nextParticipants = []) => {
     return nextParticipants.map((participant) => {
@@ -293,7 +304,7 @@ export function EditorRoomPage() {
 
     for (const [lineNumber, actor] of lineAuthorsRef.current.entries()) {
       const safeLine = Math.min(Math.max(Number(lineNumber), 1), lineCount);
-      const colorIndex = hashColorIndex(actor?.id || actor?.name || "");
+      const colorIndex = getActorColorIndex(actor);
       const maxColumn = model.getLineMaxColumn(safeLine);
       const label = actorName(actor);
 
@@ -319,7 +330,7 @@ export function EditorRoomPage() {
 
     for (const indicator of typingIndicatorsRef.current.values()) {
       const safeLine = Math.min(Math.max(Number(indicator.lineNumber || 1), 1), lineCount);
-      const colorIndex = hashColorIndex(indicator.actor?.id || indicator.actor?.name || "");
+      const colorIndex = getActorColorIndex(indicator.actor);
       const maxColumn = model.getLineMaxColumn(safeLine);
 
       decorations.push({
@@ -355,7 +366,7 @@ export function EditorRoomPage() {
     }
 
     decorationIdsRef.current = editor.deltaDecorations(decorationIdsRef.current, decorations);
-  }, []);
+  }, [getActorColorIndex]);
 
   const applyDocumentMetadata = useCallback(
     (metadata = {}) => {

@@ -23,11 +23,11 @@ CodeRoom is a MERN + Socket.io collaborative code editor for the Kodex Mini Hack
 ## Sprint Domains
 
 ```txt
-Domain A - Auth and Room Management: add owner name
+Domain A - Auth and Room Management: Nihal
 Domain B - Document and Sync Engine: Sujal
-Domain C - Realtime and Presence: add owner name
-MongoDB Persistence: add owner name
-Live deployed link: add link before submission
+Domain C - Realtime and Presence: Nayan
+MongoDB Persistence: Sujal
+Live deployed link: https://coderoomcollab.vercel.app
 ```
 
 ## Implemented Flow
