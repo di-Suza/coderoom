@@ -1,9 +1,12 @@
 import { io } from "socket.io-client";
 import { env } from "../utils/env.js";
+import { tokenStorage } from "../utils/token-storage.js";
 
-export const createSocketClient = (token = null) =>
+export const createSocketClient = () =>
   io(env.socketUrl, {
-    auth: token ? { token } : {},
     transports: ["websocket", "polling"],
     withCredentials: true,
+    auth: {
+      token: tokenStorage.get(),
+    },
   });

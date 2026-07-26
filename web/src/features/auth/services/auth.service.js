@@ -12,21 +12,12 @@ export class AuthService {
 
   static async updateMe(profile) {
     const res = await httpClient.patch("/auth/me", profile);
-    const accessToken = res.data?.data?.accessToken;
-
-    if (accessToken) {
-      tokenStorage.set(accessToken);
-    }
-
     return res.data;
   }
 
   static async logout() {
-    try {
-      await httpClient.post("/auth/logout");
-    } finally {
-      tokenStorage.clear();
-    }
+    await httpClient.post("/auth/logout");
+    tokenStorage.clear();
   }
 
   static googleAuthUrl() {

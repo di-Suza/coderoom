@@ -1,10 +1,10 @@
 import React from "react";
 import logo from "../../../shared/assets/images/logo.png";
+import AuthService from "../services/auth.service.js";
 
 const HomePage = () => {
   const googleAuthhandler = () => {
-    // Redirect to the backend endpoint for Google OAuth
-    window.location.href = "http://localhost:5000/api/v1/auth/google";
+    window.location.href = AuthService.googleAuthUrl();
   };
 
   const languages = [
