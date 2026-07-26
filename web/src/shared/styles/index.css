@@ -20,7 +20,7 @@ textarea {
 }
 
 .coderoom-line-author {
-  box-shadow: inset 2px 0 0 currentColor;
+  box-shadow: inset 3px 0 0 currentColor;
 }
 
 .coderoom-author-label,
@@ -38,28 +38,28 @@ textarea {
 }
 
 .coderoom-user-0 {
-  background: rgba(16, 185, 129, 0.08);
-  color: rgba(16, 185, 129, 0.72);
+  background-color: rgba(16, 185, 129, 0.14) !important;
+  color: rgba(16, 185, 129, 0.86) !important;
 }
 
 .coderoom-user-1 {
-  background: rgba(56, 189, 248, 0.08);
-  color: rgba(56, 189, 248, 0.72);
+  background-color: rgba(56, 189, 248, 0.14) !important;
+  color: rgba(56, 189, 248, 0.86) !important;
 }
 
 .coderoom-user-2 {
-  background: rgba(168, 85, 247, 0.08);
-  color: rgba(168, 85, 247, 0.72);
+  background-color: rgba(168, 85, 247, 0.14) !important;
+  color: rgba(168, 85, 247, 0.86) !important;
 }
 
 .coderoom-user-3 {
-  background: rgba(251, 191, 36, 0.08);
-  color: rgba(251, 191, 36, 0.72);
+  background-color: rgba(251, 191, 36, 0.14) !important;
+  color: rgba(251, 191, 36, 0.86) !important;
 }
 
 .coderoom-user-4 {
-  background: rgba(244, 114, 182, 0.08);
-  color: rgba(244, 114, 182, 0.72);
+  background-color: rgba(244, 114, 182, 0.14) !important;
+  color: rgba(244, 114, 182, 0.86) !important;
 }
 
 .coderoom-typing-line {
