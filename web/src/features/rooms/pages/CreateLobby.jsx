@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import RoomService from "../services/room.service.js";
 import { setCurrentRoom, setLoading, setError } from "../roomsSlice.js";
+import logo from "../../../shared/assets/images/logo.png";
 
 const CreateLobby = () => {
   const navigate = useNavigate();
@@ -75,10 +76,7 @@ const CreateLobby = () => {
         {/* --- NAVBAR --- */}
         <nav className="flex items-center justify-between px-8 py-6 max-w-7xl mx-auto w-full">
           <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate("/")}>
-            <div className="w-8 h-8 bg-white rounded-md flex items-center justify-center">
-              <span className="text-black font-bold text-xl">&lt;/&gt;</span>
-            </div>
-            <span className="text-xl font-semibold tracking-tight">Darkweb X</span>
+            <img src={logo} alt="CodeRoom" className="h-9 w-auto" />
           </div>
           <button 
             onClick={() => navigate("/app")} 
